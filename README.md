@@ -6,5 +6,3 @@ src="https://img.shields.io/twitter/follow/datasherlocks?label=Follow%20me&style
 
 <p align="center"> <img src="https://raw.githubusercontent.com/tqindia/tqindia/main/source.gif" /> </p>
 
-<h3 align="center">I'm currently vibing to 🎧</h3>
-<p align="center"> <img src="https://spotify-github-profile.vercel.app/api/view.svg?uid=jjczlamuzfty5k0s1wxsxtu0p&cover_image=true&theme=compact" height="300px" alt="spotify"> </p>
