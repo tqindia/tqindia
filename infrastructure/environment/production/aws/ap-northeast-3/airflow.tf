@@ -1,33 +1,32 @@
 
   module "airflow"  {
-    repository = "https://airflow.apache.org"
+    create_namespace = true
     cleanup_on_fail = true
-    chart_version = "1.4.0"
-    wait = true
-    env_name = "production-ap-northeast-3"
-    module_name = "airflow"
+    layer_name = "production-ap-northeast-3"
     source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart?ref=main"
-    release_name = "airflow"
-    namespace = "airflow"
     atomic = true
+    chart_version = "1.4.0"
+    dependency_update = true
+    wait = true
+    wait_for_jobs = false
+    max_history = 25
+    release_name = "airflow"
+    repository = "https://airflow.apache.org"
+    namespace = "airflow"
+    timeout = null()
     values_files = [
       []
     ]
-    timeout = null()
-    create_namespace = true
     values = {
-      redis = {
-        enabled = false
-      }
-      statsd = {
-        enabled = false
+      workers = {
+        replicas = 1
       }
       data = {
         metadataConnection = {
-          host = "${{module.db.db_host}}"
           db = "${{module.db.db_name}}"
           user = "${{module.db.db_user}}"
           pass = "${{module.db.db_password}}"
+          host = "${{module.db.db_host}}"
         }
         brokerUrl = "rediss://:${{module.redis.cache_auth_token}}@${{module.redis.cache_host}}"
       }
@@ -35,16 +34,22 @@
         AIRFLOW__WEBSERVER__BASE_URL = "http://{module.dns.domain}"
       }
       ingress = {
-        enabled = true
         web = {
+          path = ""
+          host = "{module.dns.domain}"
           annotations = {
             kubernetes.io/ingress.class = "nginx"
           }
-          path = ""
-          host = "{module.dns.domain}"
         }
+        enabled = true
       }
       postgresql = {
+        enabled = false
+      }
+      redis = {
+        enabled = false
+      }
+      statsd = {
         enabled = false
       }
       flower = {
@@ -52,12 +57,7 @@
       }
       extraEnv = "- name: AIRFLOW__CORE__LOAD_EXAMPLES
   value: "true""
-      workers = {
-        replicas = 1
-      }
     }
-    dependency_update = true
-    wait_for_jobs = false
-    max_history = 25
-    layer_name = "production-ap-northeast-3"
+    env_name = "production-ap-northeast-3"
+    module_name = "airflow"
   }

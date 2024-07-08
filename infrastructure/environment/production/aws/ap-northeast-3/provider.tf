@@ -10,7 +10,7 @@ provider aws {
 }
 
 allowed_account_ids = [
-	""
+	"609973658768"
 ]
 
 default_tags "tags"  {
