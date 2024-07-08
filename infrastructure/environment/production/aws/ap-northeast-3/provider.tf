@@ -9,12 +9,3 @@ provider aws {
 	region = "ap-northeast-3"
 }
 
-allowed_account_ids = [
-	"609973658768"
-]
-
-default_tags "tags"  {
-	environment_name = "production"
-	region = "ap-northeast-3"
-	layer_name = "production-ap-northeast-3"
-}

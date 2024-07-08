@@ -1,6 +1,5 @@
 
   module "base"  {
-    module_name = "base"
     source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_base?ref=main"
     private_ipv4_cidr_blocks = [
       "10.0.128.0/21",
@@ -16,4 +15,5 @@
     vpc_log_retention = 90
     env_name = "production-ap-northeast-3"
     layer_name = "production-ap-northeast-3"
+    module_name = "base"
   }

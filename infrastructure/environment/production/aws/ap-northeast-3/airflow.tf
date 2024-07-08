@@ -1,27 +1,24 @@
 
   module "airflow"  {
-    namespace = "airflow"
-    values_files = [
-      []
-    ]
+    env_name = "production-ap-northeast-3"
+    create_namespace = true
+    atomic = true
+    cleanup_on_fail = true
     values = {
-      postgresql = {
-        enabled = false
-      }
-      redis = {
-        enabled = false
-      }
       workers = {
         replicas = 1
       }
       data = {
         metadataConnection = {
+          user = "${{module.db.db_user}}"
           pass = "${{module.db.db_password}}"
           host = "${{module.db.db_host}}"
           db = "${{module.db.db_name}}"
-          user = "${{module.db.db_user}}"
         }
         brokerUrl = "rediss://:${{module.redis.cache_auth_token}}@${{module.redis.cache_host}}"
+      }
+      airflow "config"  {
+        AIRFLOW__WEBSERVER__BASE_URL = "http://{module.dns.domain}"
       }
       ingress = {
         enabled = true
@@ -41,23 +38,26 @@
       }
       extraEnv = "- name: AIRFLOW__CORE__LOAD_EXAMPLES
   value: "true""
-      airflow "config"  {
-        AIRFLOW__WEBSERVER__BASE_URL = "http://{module.dns.domain}"
+      postgresql = {
+        enabled = false
+      }
+      redis = {
+        enabled = false
       }
     }
     wait_for_jobs = false
     max_history = 25
-    wait = true
-    env_name = "production-ap-northeast-3"
-    layer_name = "production-ap-northeast-3"
-    release_name = "airflow"
-    repository = "https://airflow.apache.org"
-    create_namespace = true
-    cleanup_on_fail = true
-    chart_version = "1.4.0"
-    timeout = null()
+    namespace = "airflow"
     source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart?ref=main"
-    atomic = true
+    wait = true
+    repository = "https://airflow.apache.org"
+    chart_version = "1.4.0"
+    values_files = [
+      []
+    ]
+    timeout = null()
     dependency_update = true
+    layer_name = "production-ap-northeast-3"
     module_name = "airflow"
+    release_name = "airflow"
   }

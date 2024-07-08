@@ -7,8 +7,8 @@
         value = "${module.k8scluster.k8s_cluster_name}"
       },
       {
-        value = "{     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"   }"
         key = "node_iam_role_additional_policies"
+        value = "{     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"   }"
       },
       {
         key = "create_node_iam_role"
