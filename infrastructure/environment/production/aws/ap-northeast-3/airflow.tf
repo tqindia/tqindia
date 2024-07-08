@@ -1,16 +1,26 @@
 
   module "airflow"  {
-    chart_version = "1.4.0"
-    wait_for_jobs = false
-    max_history = 25
-    source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart?ref=main"
+    repository = "https://airflow.apache.org"
     cleanup_on_fail = true
+    chart_version = "1.4.0"
+    wait = true
+    env_name = "production-ap-northeast-3"
+    module_name = "airflow"
+    source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart?ref=main"
+    release_name = "airflow"
+    namespace = "airflow"
+    atomic = true
     values_files = [
       []
     ]
+    timeout = null()
+    create_namespace = true
     values = {
-      workers = {
-        replicas = 1
+      redis = {
+        enabled = false
+      }
+      statsd = {
+        enabled = false
       }
       data = {
         metadataConnection = {
@@ -21,14 +31,9 @@
         }
         brokerUrl = "rediss://:${{module.redis.cache_auth_token}}@${{module.redis.cache_host}}"
       }
-      redis = {
-        enabled = false
+      airflow "config"  {
+        AIRFLOW__WEBSERVER__BASE_URL = "http://{module.dns.domain}"
       }
-      flower = {
-        enabled = false
-      }
-      extraEnv = "- name: AIRFLOW__CORE__LOAD_EXAMPLES
-  value: "true""
       ingress = {
         enabled = true
         web = {
@@ -42,22 +47,17 @@
       postgresql = {
         enabled = false
       }
-      statsd = {
+      flower = {
         enabled = false
       }
-      airflow "config"  {
-        AIRFLOW__WEBSERVER__BASE_URL = "http://{module.dns.domain}"
+      extraEnv = "- name: AIRFLOW__CORE__LOAD_EXAMPLES
+  value: "true""
+      workers = {
+        replicas = 1
       }
     }
-    layer_name = "production-ap-northeast-3"
-    namespace = "airflow"
-    wait = true
-    timeout = null()
     dependency_update = true
-    env_name = "production-ap-northeast-3"
-    module_name = "airflow"
-    release_name = "airflow"
-    repository = "https://airflow.apache.org"
-    create_namespace = true
-    atomic = true
+    wait_for_jobs = false
+    max_history = 25
+    layer_name = "production-ap-northeast-3"
   }
