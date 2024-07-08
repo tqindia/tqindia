@@ -1,7 +1,5 @@
 
   module "karpenter-role"  {
-    layer_name = "production-ap-northeast-3"
-    module_name = "karpenter-role"
     source = "terraform-aws-modules/eks/aws//modules/karpenter"
     terraform_values = [
       {
@@ -18,4 +16,6 @@
       }
     ]
     env_name = "production-ap-northeast-3"
+    layer_name = "production-ap-northeast-3"
+    module_name = "karpenter-role"
   }
