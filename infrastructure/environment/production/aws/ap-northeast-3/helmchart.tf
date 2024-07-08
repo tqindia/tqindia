@@ -1,37 +1,37 @@
 
   module "helmchart"  {
-    cleanup_on_fail = true
-    chart_version = "0.37.0"
-    wait_for_jobs = true
-    max_history = 16
-    module_name = "helmchart"
-    source = "tqindia/cops/cloud//module/helm_chart"
-    version = "0.0.1"
-    atomic = true
-    namespace = "karpenter"
-    create_namespace = true
-    dependency_update = false
     release_name = "karpenter"
-    layer_name = "production-ap-northeast-3"
+    wait_for_jobs = true
+    version = "0.0.1"
+    repository = "oci://public.ecr.aws/karpenter/karpenter"
+    atomic = true
+    cleanup_on_fail = true
+    values_files = [
+      
+    ]
+    timeout = 23
+    source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart"
+    values "settings"  {
+      clusterName = "${module.k8scluster.k8s_cluster_name}"
+      interruptionQueue = "${module.k8scluster.k8s_cluster_name}"
+    }
     values "controller" "resources"  {
       requests = {
-        cpu = 1
         memory = "1Gi"
+        cpu = 1
       }
       limits = {
         cpu = 1
         memory = "1Gi"
       }
     }
-    values "settings"  {
-      clusterName = "${module.k8scluster.k8s_cluster_name}"
-      interruptionQueue = "${module.k8scluster.k8s_cluster_name}"
-    }
-    values_files = [
-      
-    ]
-    timeout = 23
-    wait = true
+    max_history = 16
     env_name = "production-ap-northeast-3"
-    repository = "oci://public.ecr.aws/karpenter/karpenter"
+    layer_name = "production-ap-northeast-3"
+    namespace = "karpenter"
+    create_namespace = true
+    chart_version = "0.37.0"
+    dependency_update = false
+    wait = true
+    module_name = "helmchart"
   }

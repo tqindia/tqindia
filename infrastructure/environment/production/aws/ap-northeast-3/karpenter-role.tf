@@ -1,6 +1,5 @@
 
   module "karpenter-role"  {
-    layer_name = "production-ap-northeast-3"
     module_name = "karpenter-role"
     source = "terraform-aws-modules/eks/aws//modules/karpenter"
     terraform_values = [
@@ -13,9 +12,10 @@
         value = "{     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"   }"
       },
       {
-        value = "true"
         key = "create_node_iam_role"
+        value = "true"
       }
     ]
     env_name = "production-ap-northeast-3"
+    layer_name = "production-ap-northeast-3"
   }
