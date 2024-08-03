@@ -1,5 +1,5 @@
-"input" "asfdsaf" {
+"input" "fdd" {
   "type" = "string"
 
-  "default" = "safdsa"
+  "default" = "fdfd"
 }
