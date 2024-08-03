@@ -1,3 +1,7 @@
+"output" "cloudwatch_log_group_name" {
+  "value" = "${module.fdssafas.cloudwatch_log_group_name}"
+}
+
 "output" "kms_account_key_arn" {
   "value" = "${module.base.kms_account_key_arn}"
 }
@@ -24,36 +28,4 @@
 
 "output" "vpc_id" {
   "value" = "${module.base.vpc_id}"
-}
-
-"output" "zone_id" {
-  "value" = "${module.dns.zone_id}"
-}
-
-"output" "name_servers" {
-  "value" = "${module.dns.name_servers}"
-}
-
-"output" "domain" {
-  "value" = "${module.dns.domain}"
-}
-
-"output" "cert_arn" {
-  "value" = "${module.dns.cert_arn}"
-}
-
-"output" "cloudwatch_log_group_name" {
-  "value" = "${module.lambada.cloudwatch_log_group_name}"
-}
-
-"output" "bucket_arn" {
-  "value" = "${module.safsa.bucket_arn}"
-}
-
-"output" "bucket_id" {
-  "value" = "${module.safsa.bucket_id}"
-}
-
-"output" "cloudfront_read_path" {
-  "value" = "${module.safsa.cloudfront_read_path}"
 }
