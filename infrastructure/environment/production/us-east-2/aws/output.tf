@@ -25,7 +25,3 @@
 "output" "vpc_id" {
   "value" = "${module.base.vpc_id}"
 }
-
-"output" "cloudwatch_log_group_name" {
-  "value" = "${module.fdagd.cloudwatch_log_group_name}"
-}
