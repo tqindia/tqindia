@@ -8,6 +8,4 @@
   "module_name" = "dns"
 
   "domain" = "dasad.com"
-
-  "source" = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_dns?ref=main"
 }
