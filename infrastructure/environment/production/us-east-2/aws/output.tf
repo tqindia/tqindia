@@ -41,3 +41,7 @@
 "output" "cert_arn" {
   "value" = "${module.dns.cert_arn}"
 }
+
+"output" "cloudwatch_log_group_name" {
+  "value" = "${module.fdagd.cloudwatch_log_group_name}"
+}
