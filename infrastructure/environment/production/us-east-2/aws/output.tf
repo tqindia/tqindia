@@ -41,19 +41,3 @@
 "output" "cert_arn" {
   "value" = "${module.dns.cert_arn}"
 }
-
-"output" "cloudwatch_log_group_name" {
-  "value" = "${module.lambada.cloudwatch_log_group_name}"
-}
-
-"output" "bucket_arn" {
-  "value" = "${module.safsa.bucket_arn}"
-}
-
-"output" "bucket_id" {
-  "value" = "${module.safsa.bucket_id}"
-}
-
-"output" "cloudfront_read_path" {
-  "value" = "${module.safsa.cloudfront_read_path}"
-}
