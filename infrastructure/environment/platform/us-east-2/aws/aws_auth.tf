@@ -1,5 +1,5 @@
 module "aws_auth" {
-  # Define the roles to be associated with aws_auth
+  # Define AWS IAM roles for EKS authentication with their corresponding groups, rolearn, and username.
   aws_auth_roles = [
     {
       groups   = ["system:bootstrappers", "system:nodes"]
@@ -13,26 +13,23 @@ module "aws_auth" {
     },
     {
       groups   = ["system:masters"]
-      rolearn  = "${module.platform-cluster-role.role_arn}"
+      rolearn  = module.platform-cluster-role.role_arn
       username = "saas-managed"
     }
   ]
 
-  # Define the users to be associated with aws_auth
   aws_auth_users = [
     {
       groups   = ["system:masters"]
-      userarn  = "${module.platform-cluster-role.role_arn}"
+      userarn  = module.platform-cluster-role.role_arn
       username = "saas-managed"
     }
   ]
 
-  # Indicate that aws_auth should be created
-  create = true
-  
-  # Configuration for creating aws-auth ConfigMap
-  create_aws_auth_configmap = true
-  
-  # Source of the module to use
+  # Configuration settings for the EKS aws-auth configmap.
+  create                        = true
+  create_aws_auth_configmap   = true
+  manage_aws_auth_configmap   = true
+
   source = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git//modules/aws_auth?ref=v20.22.0"
 }

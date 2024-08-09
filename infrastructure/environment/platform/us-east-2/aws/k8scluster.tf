@@ -1,56 +1,56 @@
 module "k8scluster" {
-  # The Amazon Machine Image (AMI) type for the cluster nodes
+  # The Amazon Machine Image (AMI) type for the EKS cluster
   ami_type = "AL2_x86_64"
 
   # Name of the EKS cluster
   cluster_name = "platform-cluster"
 
-  # Security groups for the EKS control plane
+  # Security groups for the control plane
   control_plane_security_groups = []
 
-  # Log retention period for EKS logs in days
+  # Retention period for EKS logs
   eks_log_retention = 60
 
   # Enable or disable metrics
   enable_metrics = false
 
-  # Kubernetes version for the EKS cluster
+  # Kubernetes version
   k8s_version = "1.26"
 
-  # Maximum number of nodes in the node group
+  # Maximum number of nodes in the cluster
   max_nodes = 5
 
-  # Minimum number of nodes in the node group
+  # Minimum number of nodes in the cluster
   min_nodes = 3
 
-  # Name of the module
+  # Module name
   module_name = "k8scluster"
 
-  # Disk size for the nodes
+  # Disk size for each node in GB
   node_disk_size = 500
 
   # Instance type for the nodes
   node_instance_type = "t3.xlarge"
 
-  # Launch template for the nodes (if any)
+  # Node launch template
   node_launch_template = {}
 
   # Use spot instances or not
   spot_instances = false
 
-  # AWS KMS Key ARN for encryption
+  # KMS account key ARN
   kms_account_key_arn = module.base.kms_account_key_arn
 
-  # Private subnet IDs for the VPC
+  # Private subnet IDs
   private_subnet_ids = module.base.private_subnet_ids
 
-  # VPC ID where the EKS cluster will be launched
+  # VPC ID
   vpc_id = module.base.vpc_id
 
-  # Use GPU-enabled instances or not
+  # GPU support
   GPU = false
 
-  # Source of the Terraform module
+  # Source of the module
   source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_eks?ref=main"
 
   # Environment name

@@ -1,70 +1,74 @@
-module "buildkite" {
-  # The name of the Helm release.
+resource "module" "buildkite" {
+  # Name of the release
   release_name = "buildkite"
 
-  # Repository URL for the Helm chart.
+  # URL of the helm chart repository
   repository = "https://ghcr.io/buildkite/helm/agent-stack-k8s"
 
-  # Kubernetes namespace in which to install the release.
+  # Kubernetes namespace where the release will be installed
   namespace = "buildkite"
 
-  # If true, create the specified namespace.
+  # Whether to create the namespace specified in the `namespace` argument
   create_namespace = true
 
-  # If true, install the release in atomic mode.
+  # Whether to upgrade atomically, rollback on failure
   atomic = true
 
-  # If true, delete newly created resources if the installation fails.
+  # Perform clean up on a failed installation
   cleanup_on_fail = true
 
-  # Version of the Helm chart to install.
+  # Version of the helm chart to deploy
   chart_version = "0.1.0"
 
-  # List of values files to use for the release.
+  # List of values files to apply
   values_files = []
 
-  # Inline values for the release.
+  # Inline values to override default values in the chart
   values = {
     agentStackSecret = "buildkite-secret"
     config = {
       org = var.buildkite_org
       pod-spec-patch = {
-        containers = {
-          name = "checkout"
-          envFrom = {
-            secretRef = {
-              name = "git-checkout"
-            }
+        containers = [
+          {
+            name = "checkout"
+            envFrom = [
+              {
+                secretRef = {
+                  name = "git-checkout"
+                }
+              }
+            ]
           }
-        }
+        ]
       }
     }
   }
 
-  # Timeout for the Helm operation in seconds.
+  # Maximum time in seconds to wait for any individual Kubernetes operation
   timeout = 23
 
-  # If true, update chart dependencies.
+  # Perform dependency update before installing the chart
   dependency_update = false
 
-  # If true, wait for the release to be deployed successfully.
+  # Whether to wait for all resources to be in a ready state before marking the release as successful
   wait = true
 
-  # If true, wait for all the job resources to be complete before marking the release as successful.
+  # Wait until all Jobs have been completed before marking the release as successful
   wait_for_jobs = true
 
-  # Maximum number of release versions stored per release.
+  # Limit the maximum number of revisions saved per release
   max_history = 16
 
-  # Source URL for the Terraform module.
+  # Path to the custom module being used for helm chart installation
   source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/helm_chart?ref=main"
 
-  # Environment name.
+  # Name of the environment
   env_name = "platform-us-east-2"
 
-  # Layer name.
+  # Layer name context
   layer_name = "platform-us-east-2"
 
-  # Module name.
+  # Module name context
   module_name = "buildkite"
 }
