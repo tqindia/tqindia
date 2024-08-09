@@ -1,41 +1,61 @@
-"module" "k8scluster" {
-  "ami_type" = "AL2_x86_64"
+module "k8scluster" {
+  # The Amazon Machine Image (AMI) type for the cluster nodes
+  ami_type = "AL2_x86_64"
 
-  "cluster_name" = "platform-cluster"
+  # Name of the EKS cluster
+  cluster_name = "platform-cluster"
 
-  "control_plane_security_groups" = []
+  # Security groups for the EKS control plane
+  control_plane_security_groups = []
 
-  "eks_log_retention" = "60"
+  # Log retention period for EKS logs in days
+  eks_log_retention = 60
 
-  "enable_metrics" = false
+  # Enable or disable metrics
+  enable_metrics = false
 
-  "k8s_version" = "1.26"
+  # Kubernetes version for the EKS cluster
+  k8s_version = "1.26"
 
-  "max_nodes" = "5"
+  # Maximum number of nodes in the node group
+  max_nodes = 5
 
-  "min_nodes" = "3"
+  # Minimum number of nodes in the node group
+  min_nodes = 3
 
-  "module_name" = "k8scluster"
+  # Name of the module
+  module_name = "k8scluster"
 
-  "node_disk_size" = "500"
+  # Disk size for the nodes
+  node_disk_size = 500
 
-  "node_instance_type" = "t3.xlarge"
+  # Instance type for the nodes
+  node_instance_type = "t3.xlarge"
 
-  "node_launch_template" = {}
+  # Launch template for the nodes (if any)
+  node_launch_template = {}
 
-  "spot_instances" = false
+  # Use spot instances or not
+  spot_instances = false
 
-  "kms_account_key_arn" = "${module.base.kms_account_key_arn}"
+  # AWS KMS Key ARN for encryption
+  kms_account_key_arn = module.base.kms_account_key_arn
 
-  "private_subnet_ids" = "${module.base.private_subnet_ids}"
+  # Private subnet IDs for the VPC
+  private_subnet_ids = module.base.private_subnet_ids
 
-  "vpc_id" = "${module.base.vpc_id}"
+  # VPC ID where the EKS cluster will be launched
+  vpc_id = module.base.vpc_id
 
-  "GPU" = false
+  # Use GPU-enabled instances or not
+  GPU = false
 
-  "source" = "git::https//github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_eks?ref=main"
+  # Source of the Terraform module
+  source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_eks?ref=main"
 
-  "env_name" = "platform-us-east-2"
+  # Environment name
+  env_name = "platform-us-east-2"
 
-  "layer_name" = "platform-us-east-2"
+  # Layer name
+  layer_name = "platform-us-east-2"
 }
