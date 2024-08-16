@@ -4,7 +4,14 @@ steps:
   - default: ALL
     key: region
     options:
-    
+    - label: us-west-1
+      value: us-west-1
+    - label: us-west-1
+      value: us-west-1
+    - label: ap-south-1
+      value: ap-south-1
+    - label: us-west-1
+      value: us-west-1
     - label: us-east-2
       value: us-east-2
     - label: ALL
