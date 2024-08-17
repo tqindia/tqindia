@@ -1,0 +1,23 @@
+steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/production-aws/aws/us-east-1
+  env:
+    ENVIRONMENT: production-aws
+    REGION: us-east-1
+  label: Terraform Plan for Region us-east-1 in production-aws environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_PRODUCTION-AWS_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_PRODUCTION-AWS_US_EAST_1
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/production-aws/aws/us-east-1
+  env:
+    ENVIRONMENT: production-aws
+    REGION: us-east-1
+  label: Terraform Apply for Region us-east-1 in production-aws environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_PRODUCTION-AWS_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_PRODUCTION-AWS_US_EAST_1
