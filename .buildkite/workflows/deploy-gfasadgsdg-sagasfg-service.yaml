@@ -1,0 +1,19 @@
+steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/services/sagasfg/gfasadgsdg/aws/us-west-2
+  env:
+    ENVIRONMENT: sagasfg
+    REGION: us-west-2
+  label: Terraform Plan for sagasfg Service in us-west-2 region
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env: {}
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/services/sagasfg/gfasadgsdg/aws/us-west-2
+  env:
+    ENVIRONMENT: sagasfg
+    REGION: us-west-2
+  label: Terraform Apply for Region us-west-2 in sagasfg environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env: {}
