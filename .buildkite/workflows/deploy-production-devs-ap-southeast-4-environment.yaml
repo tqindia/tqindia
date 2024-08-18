@@ -1,0 +1,23 @@
+steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/production-devs/aws/ap-southeast-4
+  env:
+    ENVIRONMENT: production-devs
+    REGION: ap-southeast-4
+  label: Terraform Plan for Region ap-southeast-4 in production-devs environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_PRODUCTION-DEVS_AP_SOUTHEAST_4
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_PRODUCTION-DEVS_AP_SOUTHEAST_4
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/production-devs/aws/ap-southeast-4
+  env:
+    ENVIRONMENT: production-devs
+    REGION: ap-southeast-4
+  label: Terraform Apply for Region ap-southeast-4 in production-devs environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_PRODUCTION-DEVS_AP_SOUTHEAST_4
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_PRODUCTION-DEVS_AP_SOUTHEAST_4
