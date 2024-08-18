@@ -5,19 +5,19 @@ steps:
     REGION: us-west-2
   label: Terraform Plan for Region us-west-2 in gfasadgsdg environment
   plugins:
-  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+  - avaly/gcp-secret-manager#v1.1.1:
       env:
         LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_GFASADGSDG_US_WEST_2
         METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_GFASADGSDG_US_WEST_2
 - block: Release
   prompt: Please unblock the pipeline
-- command: dagger call apply -args  --src . --tfmod infrastructure/environments/gfasadgsdg/aws/us-west-2
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/gfasadgsdg/aws/us-west-2
   env:
     ENVIRONMENT: gfasadgsdg
     REGION: us-west-2
   label: Terraform Apply for Region us-west-2 in gfasadgsdg environment
   plugins:
-  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+  - avaly/gcp-secret-manager#v1.1.1:
       env:
         LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_GFASADGSDG_US_WEST_2
         METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_GFASADGSDG_US_WEST_2
