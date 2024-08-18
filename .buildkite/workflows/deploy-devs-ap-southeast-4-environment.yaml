@@ -5,19 +5,19 @@ steps:
     REGION: ap-southeast-4
   label: Terraform Plan for Region ap-southeast-4 in devs environment
   plugins:
-  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+  - avaly/gcp-secret-manager#v1.1.1:
       env:
         LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_DEVS_AP_SOUTHEAST_4
         METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_DEVS_AP_SOUTHEAST_4
 - block: Release
   prompt: Please unblock the pipeline
-- command: dagger call apply -args  --src . --tfmod infrastructure/environments/devs/aws/ap-southeast-4
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/devs/aws/ap-southeast-4
   env:
     ENVIRONMENT: devs
     REGION: ap-southeast-4
   label: Terraform Apply for Region ap-southeast-4 in devs environment
   plugins:
-  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+  - avaly/gcp-secret-manager#v1.1.1:
       env:
         LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_DEVS_AP_SOUTHEAST_4
         METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_DEVS_AP_SOUTHEAST_4
