@@ -1,0 +1,13 @@
+steps:
+- block: Request release
+  fields:
+  - default: ALL
+    key: region
+    options:
+    - label: ALL
+      value: ALL
+    prompt: Please select a region for deployment
+    select: Region
+- command: buildkite-agent pipeline upload .buildkite/workflows/deploy-safd-$(buildkite-agent
+    meta-data get region).yml
+  label: Deploy safd environment
