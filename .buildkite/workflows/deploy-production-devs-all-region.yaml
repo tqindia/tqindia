@@ -1,3 +1,0 @@
-steps:
-- block: Release
-  prompt: Please unblock the pipeline
