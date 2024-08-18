@@ -1,0 +1,23 @@
+steps:
+- block: Request release
+  fields:
+  - default: ALL
+    key: region
+    options:
+    - label: ap-south-1
+      value: ap-south-1
+    - label: ap-northeast-3
+      value: ap-northeast-3
+    - label: ap-southeast-3
+      value: ap-southeast-3
+    - label: ap-east-1
+      value: ap-east-1
+    - label: us-east-1
+      value: us-east-1
+    - label: ALL
+      value: ALL
+    prompt: Please select a region for deployment
+    select: Region
+- command: buildkite-agent pipeline upload .buildkite/workflows/deploy-sdastaging-$(buildkite-agent
+    meta-data get region).yml
+  label: Deploy sdastaging environment
