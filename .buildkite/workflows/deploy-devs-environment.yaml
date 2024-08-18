@@ -4,6 +4,8 @@ steps:
   - default: ALL
     key: region
     options:
+    - label: us-gov-east-1
+      value: us-gov-east-1
     - label: ap-south-1
       value: ap-south-1
     - label: ALL
