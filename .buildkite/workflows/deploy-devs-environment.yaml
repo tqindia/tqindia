@@ -4,6 +4,10 @@ steps:
   - default: ALL
     key: region
     options:
+    - label: eu-central-2
+      value: eu-central-2
+    - label: ap-south-1
+      value: ap-south-1
     - label: ALL
       value: ALL
     prompt: Please select a region for deployment
