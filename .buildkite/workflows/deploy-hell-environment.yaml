@@ -1,0 +1,15 @@
+steps:
+- block: Request release
+  fields:
+  - default: ALL
+    key: region
+    options:
+    - label: us-west-2
+      value: us-west-2
+    - label: ALL
+      value: ALL
+    prompt: Please select a region for deployment
+    select: Region
+- command: buildkite-agent pipeline upload .buildkite/workflows/deploy-hell-$(buildkite-agent
+    meta-data get region).yml
+  label: Deploy hell environment
