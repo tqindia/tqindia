@@ -1,0 +1,19 @@
+steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/services/fdshsdgh/production-devs/aws/ap-southeast-4
+  env:
+    ENVIRONMENT: fdshsdgh
+    REGION: ap-southeast-4
+  label: Terraform Plan for fdshsdgh Service in ap-southeast-4 region
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env: {}
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/services/fdshsdgh/production-devs/aws/ap-southeast-4
+  env:
+    ENVIRONMENT: fdshsdgh
+    REGION: ap-southeast-4
+  label: Terraform Apply for Region ap-southeast-4 in fdshsdgh environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env: {}
