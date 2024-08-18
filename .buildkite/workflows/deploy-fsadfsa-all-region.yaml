@@ -1,3 +1,123 @@
 steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/ap-northeast-3
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: ap-northeast-3
+  label: Terraform Plan for Region ap-northeast-3 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_AP_NORTHEAST_3
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_AP_NORTHEAST_3
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Plan for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Plan for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Plan for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Plan for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-2
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-2
+  label: Terraform Plan for Region us-east-2 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_2
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_2
 - block: Release
   prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/ap-northeast-3
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: ap-northeast-3
+  label: Terraform Apply for Region ap-northeast-3 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_AP_NORTHEAST_3
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_AP_NORTHEAST_3
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Apply for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Apply for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Apply for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-1
+  label: Terraform Apply for Region us-east-1 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_1
+- command: dagger call apply -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/us-east-2
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: us-east-2
+  label: Terraform Apply for Region us-east-2 in fsadfsa environment
+  plugins:
+  - github.com/seek-oss/aws-sm-buildkite-plugin#v2.3.2:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_US_EAST_2
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_US_EAST_2

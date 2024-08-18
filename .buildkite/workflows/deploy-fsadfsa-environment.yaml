@@ -4,6 +4,18 @@ steps:
   - default: ALL
     key: region
     options:
+    - label: ap-northeast-3
+      value: ap-northeast-3
+    - label: us-east-1
+      value: us-east-1
+    - label: us-east-1
+      value: us-east-1
+    - label: us-east-1
+      value: us-east-1
+    - label: us-east-1
+      value: us-east-1
+    - label: us-east-2
+      value: us-east-2
     - label: ALL
       value: ALL
     prompt: Please select a region for deployment
