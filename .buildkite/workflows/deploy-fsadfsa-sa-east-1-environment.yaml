@@ -1,0 +1,23 @@
+steps:
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/fsadfsa/aws/sa-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: sa-east-1
+  label: Terraform Plan for Region sa-east-1 in fsadfsa environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_SA_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_SA_EAST_1
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/fsadfsa/aws/sa-east-1
+  env:
+    ENVIRONMENT: fsadfsa
+    REGION: sa-east-1
+  label: Terraform Apply for Region sa-east-1 in fsadfsa environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_FSADFSA_SA_EAST_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_FSADFSA_SA_EAST_1

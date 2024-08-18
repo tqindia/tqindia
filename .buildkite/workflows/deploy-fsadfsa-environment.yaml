@@ -4,6 +4,8 @@ steps:
   - default: ALL
     key: region
     options:
+    - label: sa-east-1
+      value: sa-east-1
     - label: ap-northeast-3
       value: ap-northeast-3
     - label: us-east-1
