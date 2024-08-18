@@ -4,8 +4,6 @@ steps:
   - default: ALL
     key: region
     options:
-    - label: us-west-1
-      value: us-west-1
     - label: ALL
       value: ALL
     prompt: Please select a region for deployment
