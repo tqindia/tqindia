@@ -1,0 +1,22 @@
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/staging/aws/ap-south-1
+  env:
+    ENVIRONMENT: staging
+    REGION: ap-south-1
+  label: Terraform Plan for Region ap-south-1 in staging environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_STAGING_AP_SOUTH_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_STAGING_AP_SOUTH_1
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/staging/aws/ap-south-1
+  env:
+    ENVIRONMENT: staging
+    REGION: ap-south-1
+  label: Terraform Apply for Region ap-south-1 in staging environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_STAGING_AP_SOUTH_1
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_STAGING_AP_SOUTH_1
