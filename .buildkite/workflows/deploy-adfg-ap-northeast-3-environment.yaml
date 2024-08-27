@@ -1,0 +1,24 @@
+- command: dagger call plan -args  --src . --tfmod infrastructure/environments/adfg/aws/ap-northeast-3
+  env:
+    ENVIRONMENT: adfg
+    REGION: ap-northeast-3
+  label: Terraform Plan for Region ap-northeast-3 in adfg environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_ADFG_AP_NORTHEAST_3
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_ADFG_AP_NORTHEAST_3
+  type: script
+- block: Release
+  prompt: Please unblock the pipeline
+- command: dagger call apply -args  --src . --tfmod  infrastructure/environments/adfg/aws/ap-northeast-3
+  env:
+    ENVIRONMENT: adfg
+    REGION: ap-northeast-3
+  label: Terraform Apply for Region ap-northeast-3 in adfg environment
+  plugins:
+  - avaly/gcp-secret-manager#v1.1.1:
+      env:
+        LOGS_PROVIDER_PASSWORD: LOGS_PROVIDER_PASSWORD_ADFG_AP_NORTHEAST_3
+        METRICS_PROVIDER_PASSWORD: METRICS_PROVIDER_PASSWORD_ADFG_AP_NORTHEAST_3
+  type: script
