@@ -1,0 +1,19 @@
+module "test" {
+  create                    = true
+  create_security_group     = ""
+  endpoints                 = {}
+  security_group_description = ""
+  security_group_ids        = []
+  security_group_name       = ""
+  security_group_name_prefix = ""
+  security_group_rules      = {}
+  security_group_tags       = {}
+  subnet_ids                = []
+  tags                      = {}
+  timeouts                  = {}
+  vpc_id                    = ""
+  source                    = "git::git@github.com:terraform-aws-modules/terraform-aws-vpc.git//modules/vpc-endpoints?ref=main"
+  env_name                  = "adfg-ap-east-1"
+  layer_name                = "adfg-ap-east-1"
+  module_name               = "test"
+}
