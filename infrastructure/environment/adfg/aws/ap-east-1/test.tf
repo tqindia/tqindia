@@ -1,52 +1,52 @@
-module "test" {
-  # Controls whether resources are created
-  create                      = true
+module "vpc_endpoint" {
+  # Whether to create the VPC endpoint
+  create = true
 
-  # Whether to create a security group
-  create_security_group       = false
+  # Option to create a security group for the VPC endpoint
+  create_security_group = false
 
-  # Map of endpoints to create
-  endpoints                   = {}
+  # Map of VPC endpoint configurations
+  endpoints = {}
 
-  # Description of the security group
-  security_group_description  = ""
+  # Description for the security group (if create_security_group is true)
+  security_group_description = ""
 
-  # List of security group IDs
-  security_group_ids          = []
+  # List of security group IDs (if create_security_group is false)
+  security_group_ids = []
 
-  # Name of the security group
-  security_group_name         = ""
+  # Name of the security group (if create_security_group is true)
+  security_group_name = ""
 
-  # Prefix of the security group name
-  security_group_name_prefix  = ""
+  # Prefix for the security group name (if create_security_group is true)
+  security_group_name_prefix = ""
 
-  # Map of security group rules
-  security_group_rules        = {}
+  # Rules for the security group (if create_security_group is true)
+  security_group_rules = {}
 
-  # Additional tags for the security group
-  security_group_tags         = {}
+  # Tags for the security group (if create_security_group is true)
+  security_group_tags = {}
 
-  # List of subnet IDs
-  subnet_ids                  = []
+  # List of subnet IDs where the VPC endpoints should be created
+  subnet_ids = []
 
-  # Additional tags to add to the resources
-  tags                        = {}
+  # Tags for the VPC endpoints
+  tags = {}
 
-  # Configuration for the timeout settings
-  timeouts                    = {}
+  # Timeouts for creating or deleting the VPC endpoints
+  timeouts = {}
 
-  # VPC ID to create the resources in
-  vpc_id                      = ""
+  # VPC ID where the endpoints should be created
+  vpc_id = module.base.vpc_id
 
-  # Source of the module
-  source                      = "git::git@github.com:terraform-aws-modules/terraform-aws-vpc.git//modules/vpc-endpoints?ref=main"
+  # Source for the module code
+  source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_base?ref=main"
 
   # Environment name
-  env_name                    = "adfg-ap-east-1"
+  env_name = "adfg-ap-east-1"
 
   # Layer name
-  layer_name                  = "adfg-ap-east-1"
+  layer_name = "adfg-ap-east-1"
 
   # Module name
-  module_name                 = "test"
+  module_name = "Vpc Endpoint"
 }
