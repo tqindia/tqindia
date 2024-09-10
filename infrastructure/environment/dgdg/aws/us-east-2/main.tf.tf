@@ -14,8 +14,8 @@ resource "aws_vpc" "main" {
 
 # Public Subnet resource
 resource "aws_subnet" "public" {
-  vpc_id                 = aws_vpc.main.id
-  cidr_block             = "10.0.1.0/24"
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
 
   tags = {
@@ -54,4 +54,5 @@ resource "aws_route_table_association" "public_assoc" {
 
 # Documentation:
 # This configuration sets up a VPC with a public subnet in the AWS region us-west-2. It includes an internet gateway
-# and creates a route in the route table that directs internet traffic through the internet gateway. The resources are tagged for easy identification.
+# and creates a route in the route table that directs internet traffic through the internet gateway. The resources are 
+# tagged for easy identification.
