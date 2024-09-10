@@ -1,4 +1,4 @@
-# This Terraform configuration sets up the AWS provider in the us-west-2 region.
+# Provider configuration for AWS in US West (Oregon) Region
 provider "aws" {
   region = "us-west-2"
 }
