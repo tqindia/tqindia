@@ -1,12 +1,13 @@
 provider "aws" {
-  region              = "us-east-2"
-  allowed_account_ids = ["059709188241"]
+  region = "<AWS_REGION>"
 
-  default_tags {
+  allowed_account_ids = ["<AWS_ACCOUNT_ID>"]
+
+  default_tags = {
     tags = {
       environment_name = "dgdg"
-      region           = "us-east-2"
-      layer_name       = "dgdg-us-east-2"
+      region = "<AWS_REGION>"
+      layer_name = "dgdg-"
     }
   }
 }
