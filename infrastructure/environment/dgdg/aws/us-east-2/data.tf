@@ -18,7 +18,7 @@ data "terraform_remote_state" "parent" {
 }
 
 # Documentation:
-# - The `data "aws_caller_identity" "provider"` resource retrieves details about the AWS account used by Terraform.
-# - The `data "aws_region" "provider"` resource retrieves the region in which the provider is operating.
-# - The `data "aws_eks_cluster_auth" "k8s"` resource retrieves authentication details for the specified EKS cluster.
-# - The `data "terraform_remote_state" "parent"` resource retrieves the remote state from the specified S3 bucket to enable referencing of outputs from another Terraform configuration.
+# data "aws_caller_identity" "provider": Retrieves information about the AWS account caller identity.
+# data "aws_region" "provider": Retrieves the AWS region configured in the provider.
+# data "aws_eks_cluster_auth" "k8s": Retrieves authentication information for the specified EKS cluster.
+# data "terraform_remote_state" "parent": Retrieves the remote state data stored in an S3 bucket.
