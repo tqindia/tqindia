@@ -1,62 +1,34 @@
 module "base" {
-  # Environment name
+  # Environment name for the infrastructure
   env_name = "staging-ap-south-1"
 
-  # Layer name
+  # Layer name for the infrastructure
   layer_name = "staging-ap-south-1"
 
-  # Module name
+  # Module name reference
   module_name = "base"
 
-  # CIDR blocks for private subnets
+  # Private IPv4 CIDR blocks for the VPC
   private_ipv4_cidr_blocks = ["10.0.128.0/21", "10.0.136.0/21", "10.0.144.0/21"]
 
-  # Private subnet IDs
-  private_subnet_ids = ""
+  # Private Subnet IDs (set to null whilst the module creates them)
+  private_subnet_ids = null
 
-  # CIDR blocks for public subnets
+  # Public IPv4 CIDR blocks for the VPC
   public_ipv4_cidr_blocks = ["10.0.0.0/21", "10.0.8.0/21", "10.0.16.0/21"]
 
-  # Public subnet IDs
-  public_subnet_ids = ""
+  # Public Subnet IDs (set to null whilst the module creates them)
+  public_subnet_ids = null
 
-  # Total CIDR block for the VPC
+  # Total IPv4 CIDR block for the VPC
   total_ipv4_cidr_block = "10.0.0.0/16"
 
-  # VPC ID
-  vpc_id = ""
+  # VPC ID (set to null to create a new VPC)
+  vpc_id = null
 
-  # Log retention period for VPC
+  # Log retention period for VPC logs
   vpc_log_retention = 90
 
-  # Source of the module
+  # Source of the Terraform module
   source = "git::https://github.com/thesaas-company/terraform-cloud-cops.git//modules/aws_base?ref=main"
-}
-
-output "kms_account_key_arn" {
-  value = module.base.kms_account_key_arn
-}
-
-output "kms_account_key_id" {
-  value = module.base.kms_account_key_id
-}
-
-output "private_subnet_ids" {
-  value = module.base.private_subnet_ids
-}
-
-output "public_nat_ips" {
-  value = module.base.public_nat_ips
-}
-
-output "public_subnets_ids" {
-  value = module.base.public_subnets_ids
-}
-
-output "s3_log_bucket_name" {
-  value = module.base.s3_log_bucket_name
-}
-
-output "vpc_id" {
-  value = module.base.vpc_id
 }
